@@ -7,11 +7,11 @@
 
 ## 使用方法
 
-   - 添加文章：在`articles/`目录下创建新的HTML文件
+   - 添加文章：在`articles/`目录下创建新的HTML文件（在articles/index.html中添加对应文章更新日期）
    - 添加计算器：在`calculators/`目录下创建新的HTML文件
    - 添加工具：在`tools/`目录下创建新的HTML文件
    - 添加资源：在`resources/`目录下创建新的HTML文件
-   ✍ 更新内容后需要
+   - ✍ 更新内容后需要：
    在 assets/js/pages.js 中手动添加路径
 
 ## 自定义
