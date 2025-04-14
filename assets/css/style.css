@@ -24,17 +24,7 @@
   --card-bg: #ffffff;             /* 卡片背景色 */
 }
 
-/* ==================== 夜间模式变量覆盖 ==================== */
-[data-theme="dark"] {
-  --primary-color: #7c8af5;
-  --primary-hover: #6a7af2;
-  --text-color: #e2e8f0;
-  --text-light: #a0aec0;
-  --bg-color: #1a202c;
-  --bg-secondary: #2d3748;
-  --border-color: #4a5568;
-  --card-bg: #2d3748;
-}
+
 
 /* ==================== 全局基础样式 ==================== */
 * {
@@ -283,13 +273,6 @@ header .container {
   font-size: 0.9rem;
 }
 
-/* 夜间模式图标调整 */
-[data-theme="dark"] .content-card img,
-[data-theme="dark"] .calc-card img {
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) 
-          brightness(0.9) 
-          contrast(1.1);
-}
 
 /* 图标悬停效果 */
 .content-card:hover img,
@@ -351,14 +334,6 @@ header .container {
   font-size: 0.9rem;
 }
 
-/* ===== 夜间模式适配 ===== */
-[data-theme="dark"] .contact-card {
-  background: var(--bg-secondary);
-}
-
-[data-theme="dark"] .footer-copyright {
-  background: rgba(0,0,0,0.2);
-}
 
 /* ==================== 响应式调整 ==================== */
 @media (max-width: 768px) {
@@ -376,16 +351,6 @@ header .container {
   }
 }
 
-/* 夜间模式适配 */
-[data-theme="dark"] {
-  .contact-card {
-    background: var(--bg-secondary);
-  }
-  
-  .footer-copyright {
-    background: rgba(0,0,0,0.2);
-  }
-}
 
 /* ==================== 响应式设计 ==================== */
 @media (max-width: 768px) {
