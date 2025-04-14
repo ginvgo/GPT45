@@ -65,27 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsContainer.id = "search-results";
       resultsContainer.className = "search-results-container";
 
-      const wrapper = document.createElement("div");
-      wrapper.className = "results-cards";
-
       const results = [];
 
       for (const page of htmlPages) {
-        const isHtml = page.endsWith(".html");
-        const fileName = decodeURIComponent(page.split("/").pop().toLowerCase());
-
-        if (!isHtml) {
-          // 对资源类文件仅通过文件名匹配
-          if (fileName.includes(query)) {
-            results.push({
-              title: getFileTitle(page),
-              url: page,
-              type: getPageType(page),
-            });
-          }
-          continue;
-        }
-
         try {
           const res = await fetch(page);
           const text = await res.text();
@@ -94,16 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
           const content = doc.body.textContent.toLowerCase();
 
           if (content.includes(query)) {
-            results.push({
-              title: getFileTitle(page),
-              url: page,
-              type: getPageType(page),
-            });
+            const title = getFileTitle(page); // 使用文件名作为标题
+            const type = getPageType(page);
+            results.push({ title, url: page, type });
           }
         } catch (e) {
-          console.warn("无法读取页面：", page);
+          console.warn("读取页面失败：", page);
         }
       }
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "results-cards";
 
       if (results.length === 0) {
         const card = document.createElement("div");
@@ -150,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getFileTitle(path) {
-    const file = path.split("/").pop().replace(/\.[^.]+$/, ""); // 去除扩展名
-    return decodeURIComponent(file);
+    const filename = path.split("/").pop().replace(".html", "");
+    return decodeURIComponent(filename);
   }
 });
+
