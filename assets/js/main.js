@@ -43,23 +43,44 @@ document.querySelectorAll('.popup-overlay').forEach(popup => {
 
 
 
-// 搜索数据：页面标题 + 链接
-const pages = [
-  { title: "首页", url: "index.html" },
-  { title: "亚马逊佣金分类目录", url: "articles/亚马逊佣金分类目录.html" },
-  { title: "亚马逊促销优惠券费用测算器", url: "calculators/亚马逊促销优惠券费用测算器.html" },
-  { title: "BMI计算器", url: "calculators/bmi.html" },
-];
-
-// 搜索功能实现
-document.getElementById("search-input").addEventListener("input", function () {
+// 搜索数据
+document.getElementById("search-input").addEventListener("input", async function () {
   const query = this.value.trim().toLowerCase();
   const resultsContainer = document.getElementById("search-results");
   resultsContainer.innerHTML = "";
 
   if (query === "") return;
 
-  const results = pages.filter(p => p.title.toLowerCase().includes(query));
+  const htmlPages = [
+    "index.html",
+    "articles/亚马逊佣金分类目录.html",
+    "calculators/亚马逊促销优惠券费用测算器.html",
+    "calculators/bmi.html"
+    // 后期新增的页面可手动或用工具自动加入列表
+  ];
+
+  const results = [];
+
+  for (const page of htmlPages) {
+    try {
+      const res = await fetch(page);
+      const text = await res.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, "text/html");
+      const content = doc.body.textContent.toLowerCase();
+
+      if (content.includes(query)) {
+        const titleTag = doc.querySelector("title");
+        results.push({
+          title: titleTag ? titleTag.innerText : page,
+          url: page
+        });
+      }
+    } catch (err) {
+      console.error("读取失败: " + page);
+    }
+  }
+
   if (results.length === 0) {
     resultsContainer.innerHTML = "<p>未找到相关结果。</p>";
     return;
