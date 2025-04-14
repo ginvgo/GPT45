@@ -72,10 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       for (const page of htmlPages) {
         const isHtml = page.endsWith(".html");
+        const isExcel = page.endsWith(".xlsx");
         const fileName = decodeURIComponent(page.split("/").pop().toLowerCase());
 
-        if (!isHtml) {
-          // 对非 HTML 文件（如 PDF, DOCX, JPG）根据文件名匹配
+        if (isExcel) {
+          // 对于 .xlsx 文件，仅使用文件名匹配
           if (fileName.includes(query)) {
             results.push({
               title: getFileTitle(page),
@@ -83,25 +84,28 @@ document.addEventListener("DOMContentLoaded", () => {
               type: "资源",
             });
           }
-          continue;
+          continue; // 跳过其他处理，继续下一个文件
         }
 
-        try {
-          const res = await fetch(page);
-          const text = await res.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(text, "text/html");
-          const content = doc.body.textContent.toLowerCase();
+        if (isHtml) {
+          // 对 HTML 文件进行内容匹配
+          try {
+            const res = await fetch(page);
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, "text/html");
+            const content = doc.body.textContent.toLowerCase();
 
-          if (content.includes(query)) {
-            results.push({
-              title: getFileTitle(page),
-              url: page,
-              type: getPageType(page),
-            });
+            if (content.includes(query)) {
+              results.push({
+                title: getFileTitle(page),
+                url: page,
+                type: getPageType(page),
+              });
+            }
+          } catch (e) {
+            console.warn("无法读取页面：", page);
           }
-        } catch (e) {
-          console.warn("无法读取页面：", page);
         }
       }
 
@@ -150,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getFileTitle(path) {
-    const filename = path.split("/").pop().replace(/\.[^.]+$/, ""); // 去除文件扩展名
+    const filename = path.split("/").pop().replace(/\.[^.]+$/, ""); // 去除扩展名
     return decodeURIComponent(filename);
   }
 });
