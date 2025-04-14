@@ -281,7 +281,7 @@ header .container {
   transform: scale(1.1);
 }
 
-/* ===== 联系栏样式 ===== */
+/* =====  =====  ===== 联系栏样式 =====  =====  ===== */
 .site-footer {
   background: var(--bg-color);
   padding: 18px 0 0;
@@ -302,7 +302,7 @@ header .container {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
   max-width: 800px;
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   padding: 0 10px;
 }
 
