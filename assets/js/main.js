@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const heroSection = document.querySelector("main.container .hero");
 
-  if (!searchInput || !heroSection || typeof htmlPages === "undefined") return;
+  if (!searchInput || !heroSection || typeof htmlPages === "undefined" || typeof resources === "undefined") return;
 
   searchInput.addEventListener("keydown", async function (event) {
     const query = this.value.trim().toLowerCase();
@@ -70,44 +70,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const results = [];
 
+      // 处理 HTML 文件
       for (const page of htmlPages) {
-        const isHtml = page.endsWith(".html");
-        const isExcel = page.endsWith(".xlsx");
-        const fileName = decodeURIComponent(page.split("/").pop().toLowerCase());
+        try {
+          const res = await fetch(page);
+          const text = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, "text/html");
+          const content = doc.body.textContent.toLowerCase();
 
-        if (isExcel) {
-          // 对于 .xlsx 文件，仅使用文件名匹配
-          if (fileName.includes(query)) {
+          if (content.includes(query)) {
             results.push({
               title: getFileTitle(page),
               url: page,
-              type: "资源",
+              type: getPageType(page),
             });
           }
-          continue; // 跳过其他处理，继续下一个文件
-        }
-
-        if (isHtml) {
-          // 对 HTML 文件进行内容匹配
-          try {
-            const res = await fetch(page);
-            const text = await res.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, "text/html");
-            const content = doc.body.textContent.toLowerCase();
-
-            if (content.includes(query)) {
-              results.push({
-                title: getFileTitle(page),
-                url: page,
-                type: getPageType(page),
-              });
-            }
-          } catch (e) {
-            console.warn("无法读取页面：", page);
-          }
+        } catch (e) {
+          console.warn("无法读取页面：", page);
         }
       }
+
+      // 处理非 HTML 文件（例如 .xlsx, .pdf 等）
+      resources.forEach(file => {
+        const fileName = getFileTitle(file).toLowerCase();
+        if (fileName.includes(query)) {
+          results.push({
+            title: getFileTitle(file),
+            url: file,
+            type: "资源",
+          });
+        }
+      });
 
       if (results.length === 0) {
         const card = document.createElement("div");
@@ -139,6 +133,25 @@ document.addEventListener("DOMContentLoaded", () => {
       removeSearchResults();
     }
   });
+
+  function removeSearchResults() {
+    const existing = document.getElementById("search-results");
+    if (existing) existing.remove();
+  }
+
+  function getPageType(path) {
+    if (path.includes("articles/")) return "文章";
+    if (path.includes("tools/")) return "工具";
+    if (path.includes("calculators/")) return "计算器";
+    if (path.includes("resources/")) return "资源";
+    return "页面";
+  }
+
+  function getFileTitle(path) {
+    const filename = path.split("/").pop().replace(/\.[^.]+$/, ""); // 去除扩展名
+    return decodeURIComponent(filename);
+  }
+});
 
   function removeSearchResults() {
     const existing = document.getElementById("search-results");
