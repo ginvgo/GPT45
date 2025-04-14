@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章 | Ginv</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/logo.png">
+</head>
+<body>
+   <header>
+    <div class="container">
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="网站Logo">
+            <span>Ginv</span>
+        </div>
+        <nav>
+            <a href="../articles/" class="active">文章</a>
+            <a href="../tools/">工具</a>
+            <a href="../calculators/">计算器</a>
+            <a href="../resources/">资源</a>
+        </nav>
+        <div class="header-actions">
+            <button id="home-button" class="home-button">返回主页</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <h1 style="margin-top: 20px;">文章列表</h1>
+    <p class="subtitle">探索我们的文章库，了解最新信息和深度分析。</p>
+    
+    <section class="content-grid">
+        <a href="article1.html" class="content-card" class="content-card" >
+            <img src="../assets/images/article.png" alt="最新文章">
+            <h3>最新文章</h3>
+            <p>更新时间: 2025/04/11</p>
+        </a>
+        
+         <a href="亚马逊佣金分类目录.html" class="content-card" >
+            <img src="../assets/images/article.png" alt="亚马逊佣金分类目录">
+            <h3>亚马逊佣金分类目录</h3>
+            <p>更新时间: 2025/04/11</p>
+        </a>
+        
+        <a href="#" class="content-card">
+            <img src="../assets/images/article.png" alt="行业分析">
+            <h3>行业分析</h3>
+            <p>更新时间: 2025/04/11</p>
+        </a>
+
+         <a href="README.md" class="content-card">
+            <img src="../assets/images/article.png" alt="用户手册">
+            <h3>用户手册</h3>
+            <p>更新时间: 2025/04/14</p>
+        </a>
+        
+        <!-- 可以继续添加更多文章卡片 -->
+    </section>
+</main>
+   <!-- 底部联系栏 -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- 联系标题 -->
+    <h2 class="contact-title">CONTACT</h2>
+    
+    <!-- 联系信息网格 -->
+    <div class="contact-grid">
+      <!-- 微信公众号 -->
+      <div class="contact-card" onclick="togglePopup('wechat-popup')">
+        <img src="../assets/images/wechat-50.png" alt="微信" width="40">
+        <h3>微信公众号</h3>
+        <p>点击查看</p>
+      </div>
+      
+      <!-- 微信联系 -->
+      <div class="contact-card" onclick="togglePopup('wechat-contact-popup')">
+        <img src="../assets/images/wechat-icon.png" alt="微信" width="40">
+        <h3>微信</h3>
+        <p>点击查看</p>
+      </div>
+      
+      <!-- 邮箱联系 -->
+      <div class="contact-card" onclick="togglePopup('email-popup')">
+        <img src="../assets/images/email-icon.png" alt="邮箱" width="40">
+        <h3>邮箱</h3>
+        <p>点击查看</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 版权信息 -->
+  <div class="footer-copyright">
+    <p>© 2025 Ginv. 保留所有权利.</p>
+  </div>
+
+  <!-- 弹窗结构 -->
+  <div id="wechat-popup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn" onclick="togglePopup('wechat-popup')">&times;</span>
+      <img src="../assets/images/wechat-qr.png" alt="公众号二维码" width="100">
+      <p>扫码关注获取最新资讯</p>
+    </div>
+  </div>
+
+  <div id="wechat-contact-popup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn" onclick="togglePopup('wechat-contact-popup')">&times;</span>
+      <img src="../assets/images/wechat-icon.png" alt="微信" width="28">
+      <p class="contact-info">WeChatID</p>
+      <button class="copy-btn" onclick="copyToClipboard('WeChatID')">复制微信号</button>
+    </div>
+  </div>
+
+  <div id="email-popup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn" onclick="togglePopup('email-popup')">&times;</span>
+      <img src="../assets/images/email-icon.png" alt="邮箱" width="28">
+      <p class="contact-info">contact@yourdomain.com</p>
+      <div class="popup-actions">
+        <button class="copy-btn" onclick="copyToClipboard('contact@domain.com')">复制邮箱</button>
+        <a href="mailto:contact@domain.com" class="email-btn">发送邮件</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
