@@ -46,19 +46,20 @@ document.querySelectorAll('.popup-overlay').forEach(popup => {
 // 搜索功能
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
+  const heroSection = document.querySelector("main.container .hero");
 
-  if (!searchInput || typeof htmlPages === "undefined") return;
+  if (!searchInput || !heroSection || typeof htmlPages === "undefined") return;
 
   searchInput.addEventListener("keydown", async function (event) {
+    const query = this.value.trim().toLowerCase();
+
+    if (query === "") {
+      removeSearchResults();
+      return;
+    }
+
     if (event.key === "Enter") {
-      const query = this.value.trim().toLowerCase();
-      let existingResults = document.getElementById("search-results");
-
-      if (existingResults) {
-        existingResults.remove();
-      }
-
-      if (query === "") return;
+      removeSearchResults(); // 清除旧结果
 
       const resultsContainer = document.createElement("div");
       resultsContainer.id = "search-results";
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const content = doc.body.textContent.toLowerCase();
 
           if (content.includes(query)) {
-            const title = doc.querySelector("title")?.innerText || page;
+            const title = getFileTitle(page);
             const type = getPageType(page);
             results.push({ title, url: page, type });
           }
@@ -99,9 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
         resultsContainer.appendChild(ul);
       }
 
-      searchInput.parentElement.appendChild(resultsContainer);
+      heroSection.parentNode.insertBefore(resultsContainer, heroSection); // ✅ 插入到.hero之前
     }
   });
+
+  searchInput.addEventListener("input", () => {
+    if (searchInput.value.trim() === "") {
+      removeSearchResults();
+    }
+  });
+
+  function removeSearchResults() {
+    const existing = document.getElementById("search-results");
+    if (existing) existing.remove();
+  }
 
   function getPageType(path) {
     if (path.includes("articles/")) return "文章";
@@ -110,5 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (path.includes("resources/")) return "资源";
     return "页面";
   }
-});
 
+  function getFileTitle(path) {
+    const parts = path.split("/").pop().replace(".html", "");
+    return decodeURIComponent(parts);
+  }
+});
