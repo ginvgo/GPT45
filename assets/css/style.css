@@ -101,7 +101,7 @@ header .container {
 /* 英雄区域（主标题区） */
 .hero {
   text-align: center;
-  padding: 80px 0;                /* 上下内边距 */
+  padding: 50px 0;                /* 上下内边距 */
   max-width: 800px;               /* 限制最大宽度 */
   margin: 0 auto;                 /* 水平居中 */
 }
