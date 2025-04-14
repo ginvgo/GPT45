@@ -43,54 +43,49 @@ document.querySelectorAll('.popup-overlay').forEach(popup => {
 
 
 
-// 搜索数据
-document.getElementById("search-input").addEventListener("input", async function () {
-  const query = this.value.trim().toLowerCase();
+// 搜索功能
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("search-input");
   const resultsContainer = document.getElementById("search-results");
-  resultsContainer.innerHTML = "";
 
-  if (query === "") return;
+  if (!searchInput) return;
 
-  const htmlPages = [
-    "index.html",
-    "articles/亚马逊佣金分类目录.html",
-    "calculators/亚马逊促销优惠券费用测算器.html",
-    "calculators/bmi.html"
-    // 后期新增的页面可手动或用工具自动加入列表
-  ];
+  searchInput.addEventListener("input", async function () {
+    const query = this.value.trim().toLowerCase();
+    resultsContainer.innerHTML = "";
 
-  const results = [];
+    if (query === "") return;
 
-  for (const page of htmlPages) {
-    try {
-      const res = await fetch(page);
-      const text = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, "text/html");
-      const content = doc.body.textContent.toLowerCase();
+    const results = [];
 
-      if (content.includes(query)) {
-        const titleTag = doc.querySelector("title");
-        results.push({
-          title: titleTag ? titleTag.innerText : page,
-          url: page
-        });
+    for (const page of htmlPages) {
+      try {
+        const res = await fetch(page);
+        const text = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        const content = doc.body.textContent.toLowerCase();
+
+        if (content.includes(query)) {
+          const title = doc.querySelector("title")?.innerText || page;
+          results.push({ title, url: page });
+        }
+      } catch (e) {
+        console.error("搜索读取失败", page);
       }
-    } catch (err) {
-      console.error("读取失败: " + page);
     }
-  }
 
-  if (results.length === 0) {
-    resultsContainer.innerHTML = "<p>未找到相关结果。</p>";
-    return;
-  }
-
-  const ul = document.createElement("ul");
-  results.forEach(p => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${p.url}">${p.title}</a>`;
-    ul.appendChild(li);
+    if (results.length === 0) {
+      resultsContainer.innerHTML = "<p>未找到相关内容。</p>";
+    } else {
+      const ul = document.createElement("ul");
+      results.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
+        ul.appendChild(li);
+      });
+      resultsContainer.appendChild(ul);
+    }
   });
-  resultsContainer.appendChild(ul);
 });
+
