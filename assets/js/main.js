@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const content = doc.body.textContent.toLowerCase();
 
           if (content.includes(query)) {
-            const title = getFileTitle(page); // ← 使用文件名作为标题
+            const title = getFileTitle(page); // 使用文件名作为标题
             const type = getPageType(page);
-            results.push({ title, url: page, type, description });
+            results.push({ title, url: page, type });
           }
         } catch (e) {
           console.warn("读取页面失败：", page);
@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
           card.innerHTML = `
             <div class="card-type">${r.type}</div>
             <a class="card-title" href="${r.url}" target="_blank">${r.title}</a>
-            <div class="card-description">${r.description}</div>
           `;
 
           wrapper.appendChild(card);
