@@ -46,16 +46,23 @@ document.querySelectorAll('.popup-overlay').forEach(popup => {
 // 搜索功能
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
-  const resultsContainer = document.getElementById("search-results");
 
-  if (!searchInput || !resultsContainer || typeof htmlPages === "undefined") return;
+  if (!searchInput || typeof htmlPages === "undefined") return;
 
   searchInput.addEventListener("keydown", async function (event) {
     if (event.key === "Enter") {
       const query = this.value.trim().toLowerCase();
-      resultsContainer.innerHTML = "";
+      let existingResults = document.getElementById("search-results");
+
+      if (existingResults) {
+        existingResults.remove(); // 移除旧的结果
+      }
 
       if (query === "") return;
+
+      const resultsContainer = document.createElement("div");
+      resultsContainer.id = "search-results";
+      resultsContainer.className = "search-results-container";
 
       const results = [];
 
@@ -72,21 +79,27 @@ document.addEventListener("DOMContentLoaded", () => {
             results.push({ title, url: page });
           }
         } catch (e) {
-          console.warn("无法读取页面：", page);
+          console.warn("读取页面失败：", page);
         }
       }
 
       if (results.length === 0) {
-        resultsContainer.innerHTML = "<p>未找到相关内容。</p>";
+        resultsContainer.innerHTML = `<p class="no-results">未找到相关内容。</p>`;
       } else {
         const ul = document.createElement("ul");
+        ul.className = "results-list";
+
         results.forEach(r => {
           const li = document.createElement("li");
-          li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
+          li.innerHTML = `<a href="${r.url}" target="_blank">${r.title}</a>`;
           ul.appendChild(li);
         });
+
         resultsContainer.appendChild(ul);
       }
+
+      // 插入到搜索框下方
+      searchInput.parentElement.appendChild(resultsContainer);
     }
   });
 });
