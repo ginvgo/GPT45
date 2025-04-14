@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (event.key === "Enter") {
-      removeSearchResults(); // 清除旧结果
+      removeSearchResults();
 
       const resultsContainer = document.createElement("div");
       resultsContainer.id = "search-results";
@@ -76,9 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
           const content = doc.body.textContent.toLowerCase();
 
           if (content.includes(query)) {
-            const title = getFileTitle(page);
+            const title = doc.querySelector("title")?.innerText || getFileTitle(page);
+            const description = doc.querySelector('meta[name="description"]')?.getAttribute("content") || "暂无描述信息。";
             const type = getPageType(page);
-            results.push({ title, url: page, type });
+            results.push({ title, url: page, type, description });
           }
         } catch (e) {
           console.warn("读取页面失败：", page);
@@ -88,19 +89,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (results.length === 0) {
         resultsContainer.innerHTML = `<p class="no-results">未找到相关内容。</p>`;
       } else {
-        const ul = document.createElement("ul");
-        ul.className = "results-list";
+        const wrapper = document.createElement("div");
+        wrapper.className = "results-cards";
 
         results.forEach(r => {
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="${r.url}" target="_blank">${r.type} — ${r.title}</a>`;
-          ul.appendChild(li);
+          const card = document.createElement("div");
+          card.className = "result-card";
+
+          card.innerHTML = `
+            <div class="card-type">${r.type}</div>
+            <a class="card-title" href="${r.url}" target="_blank">${r.title}</a>
+            <div class="card-description">${r.description}</div>
+          `;
+
+          wrapper.appendChild(card);
         });
 
-        resultsContainer.appendChild(ul);
+        resultsContainer.appendChild(wrapper);
       }
 
-      heroSection.parentNode.insertBefore(resultsContainer, heroSection); // ✅ 插入到.hero之前
+      heroSection.parentNode.insertBefore(resultsContainer, heroSection);
     }
   });
 
