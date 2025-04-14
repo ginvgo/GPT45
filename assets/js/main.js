@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let existingResults = document.getElementById("search-results");
 
       if (existingResults) {
-        existingResults.remove(); // 移除旧的结果
+        existingResults.remove();
       }
 
       if (query === "") return;
@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (content.includes(query)) {
             const title = doc.querySelector("title")?.innerText || page;
-            results.push({ title, url: page });
+            const type = getPageType(page);
+            results.push({ title, url: page, type });
           }
         } catch (e) {
           console.warn("读取页面失败：", page);
@@ -91,15 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         results.forEach(r => {
           const li = document.createElement("li");
-          li.innerHTML = `<a href="${r.url}" target="_blank">${r.title}</a>`;
+          li.innerHTML = `<a href="${r.url}" target="_blank">${r.type} — ${r.title}</a>`;
           ul.appendChild(li);
         });
 
         resultsContainer.appendChild(ul);
       }
 
-      // 插入到搜索框下方
       searchInput.parentElement.appendChild(resultsContainer);
     }
   });
+
+  function getPageType(path) {
+    if (path.includes("articles/")) return "文章";
+    if (path.includes("tools/")) return "工具";
+    if (path.includes("calculators/")) return "计算器";
+    if (path.includes("resources/")) return "资源";
+    return "页面";
+  }
 });
+
