@@ -1,6 +1,5 @@
 
 const htmlPages = [
-  "index.html",
   "articles/亚马逊佣金分类目录.html",
   "calculators/亚马逊促销优惠券费用测算器.html",
   "calculators/bmi.html"
