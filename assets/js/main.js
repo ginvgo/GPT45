@@ -85,27 +85,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `<p class="no-results">未找到相关内容。</p>`;
-      } else {
-        const wrapper = document.createElement("div");
-        wrapper.className = "results-cards";
+      const wrapper = document.createElement("div");
+      wrapper.className = "results-cards";
 
+      if (results.length === 0) {
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+          <div class="card-type">没有找到匹配内容</div>
+          <div class="card-title">请尝试使用其他关键词</div>
+        `;
+        wrapper.appendChild(card);
+      } else {
         results.forEach(r => {
           const card = document.createElement("div");
           card.className = "result-card";
-
           card.innerHTML = `
             <div class="card-type">${r.type}</div>
             <a class="card-title" href="${r.url}" target="_blank">${r.title}</a>
           `;
-
           wrapper.appendChild(card);
         });
-
-        resultsContainer.appendChild(wrapper);
       }
 
+      resultsContainer.appendChild(wrapper);
       heroSection.parentNode.insertBefore(resultsContainer, heroSection);
     }
   });
