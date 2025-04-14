@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const content = doc.body.textContent.toLowerCase();
 
           if (content.includes(query)) {
-            const title = doc.querySelector("title")?.innerText || getFileTitle(page);
+            const title = getFileTitle(page); // ← 使用文件名作为标题
             const description = doc.querySelector('meta[name="description"]')?.getAttribute("content") || "暂无描述信息。";
             const type = getPageType(page);
             results.push({ title, url: page, type, description });
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getFileTitle(path) {
-    const parts = path.split("/").pop().replace(".html", "");
-    return decodeURIComponent(parts);
+    const filename = path.split("/").pop().replace(".html", "");
+    return decodeURIComponent(filename);
   }
 });
