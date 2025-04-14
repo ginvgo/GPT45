@@ -547,30 +547,44 @@ header .container {
 }
 
 
+.search-results-container {
+  margin-bottom: 2rem;
+}
+
+.results-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
 .result-card {
-  border-radius: 12px;
-  padding: 1rem;
-  background-color: var(--card-bg, #f8f9fa);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  margin-bottom: 1rem;
-  transition: all 0.2s ease;
+  background-color: var(--card-bg, #fff);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1rem 1.25rem;
+  transition: all 0.2s ease-in-out;
 }
+
 .result-card:hover {
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
+
 .card-type {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #6c757d;
+  color: #888;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.4rem;
 }
+
 .card-title {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #007bff;
+  color: #1a73e8;
   text-decoration: none;
 }
+
 .card-title:hover {
   text-decoration: underline;
 }
