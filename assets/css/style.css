@@ -509,6 +509,15 @@ header .container {
 }，
 
 
+
+/* 头部整体布局 */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 /* 搜索框区域 */
 .search-box {
   flex: 1;
