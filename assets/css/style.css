@@ -507,3 +507,57 @@ header .container {
 .email-btn:hover {
   background: var(--border-color);
 }，
+
+
+/* 搜索框区域 */
+.search-box {
+  flex: 1;
+  max-width: 280px;
+  margin-left: 1rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  background-color: #2e2e3a;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.search-box input::placeholder {
+  color: #bbb;
+}
+
+.search-box input:focus {
+  background-color: #3a3a4a;
+  box-shadow: 0 0 0 2px #66bfff;
+}
+
+/* 搜索结果显示区 */
+#search-results {
+  background-color: #1f1f2f;
+  padding: 1rem;
+  color: #fff;
+}
+
+#search-results ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#search-results li {
+  margin: 0.5rem 0;
+}
+
+#search-results a {
+  color: #66bfff;
+  text-decoration: none;
+}
+
+#search-results a:hover {
+  color: #4CAF50;
+}
