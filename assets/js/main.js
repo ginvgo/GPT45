@@ -1,5 +1,5 @@
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // 返回主页按钮
     const homeButton = document.getElementById('home-button');
     if (homeButton) {
