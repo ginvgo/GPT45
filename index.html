@@ -9,73 +9,29 @@
 </head>
 <body>
 
-<style>
-  #search-container {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0 10px 0;
-  }
-  #search-input {
-    padding: 10px 15px;
-    width: 50%;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-  }
-  #search-input:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-  }
-  #search-results {
-    max-width: 60%;
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  #search-results ul {
-    list-style: none;
-    padding: 0;
-  }
-  #search-results li {
-    margin: 8px 0;
-  }
-  #search-results a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.2s;
-  }
-  #search-results a:hover {
-    color: #4CAF50;
-  }
-</style>
+<header>
+  <div class="container header-container">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="网站Logo">
+      <span>Ginv's Amazon</span>
+    </div>
 
-<div id="search-container">
-  <input type="text" id="search-input" placeholder="🔍 输入关键词搜索页面...">
-</div>
+    <nav class="nav-links">
+      <a href="articles/">文章</a>
+      <a href="tools/">工具</a>
+      <a href="calculators/">计算器</a>
+      <a href="resources/">资源</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="🔍 搜索内容...">
+    </div>
+  </div>
+</header>
+
+<!-- 搜索结果显示容器，可放在主内容区域的上方 -->
 <div id="search-results"></div>
 
-
- <header>
-    <div class="container">
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="网站Logo">
-            <span>Ginv's Amazon</span>
-        </div>
-       
-        <nav>
-            <a href="articles/">文章</a>
-            <a href="tools/">工具</a>
-            <a href="calculators/">计算器</a>
-            <a href="resources/">资源</a>
-        </nav>
-       
-    </div>
-</header>
 
     <main class="container">
         <section class="hero">
