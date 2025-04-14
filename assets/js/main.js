@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (content.includes(query)) {
             const title = getFileTitle(page); // ← 使用文件名作为标题
-            const description = doc.querySelector('meta[name="description"]')?.getAttribute("content") || "暂无描述信息。";
             const type = getPageType(page);
             results.push({ title, url: page, type, description });
           }
