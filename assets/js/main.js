@@ -48,43 +48,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const resultsContainer = document.getElementById("search-results");
 
-  if (!searchInput) return;
+  if (!searchInput || !resultsContainer || typeof htmlPages === "undefined") return;
 
-  searchInput.addEventListener("input", async function () {
-    const query = this.value.trim().toLowerCase();
-    resultsContainer.innerHTML = "";
+  searchInput.addEventListener("keydown", async function (event) {
+    if (event.key === "Enter") {
+      const query = this.value.trim().toLowerCase();
+      resultsContainer.innerHTML = "";
 
-    if (query === "") return;
+      if (query === "") return;
 
-    const results = [];
+      const results = [];
 
-    for (const page of htmlPages) {
-      try {
-        const res = await fetch(page);
-        const text = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        const content = doc.body.textContent.toLowerCase();
+      for (const page of htmlPages) {
+        try {
+          const res = await fetch(page);
+          const text = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, "text/html");
+          const content = doc.body.textContent.toLowerCase();
 
-        if (content.includes(query)) {
-          const title = doc.querySelector("title")?.innerText || page;
-          results.push({ title, url: page });
+          if (content.includes(query)) {
+            const title = doc.querySelector("title")?.innerText || page;
+            results.push({ title, url: page });
+          }
+        } catch (e) {
+          console.warn("无法读取页面：", page);
         }
-      } catch (e) {
-        console.error("搜索读取失败", page);
       }
-    }
 
-    if (results.length === 0) {
-      resultsContainer.innerHTML = "<p>未找到相关内容。</p>";
-    } else {
-      const ul = document.createElement("ul");
-      results.forEach(r => {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
-        ul.appendChild(li);
-      });
-      resultsContainer.appendChild(ul);
+      if (results.length === 0) {
+        resultsContainer.innerHTML = "<p>未找到相关内容。</p>";
+      } else {
+        const ul = document.createElement("ul");
+        results.forEach(r => {
+          const li = document.createElement("li");
+          li.innerHTML = `<a href="${r.url}">${r.title}</a>`;
+          ul.appendChild(li);
+        });
+        resultsContainer.appendChild(ul);
+      }
     }
   });
 });
