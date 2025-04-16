@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>亚马逊第三方卖家运营指南 | 标品与非标品策略</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+          },
+        },
+      },
+    }
+  </script>
+  
+  <style>
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+    
+    .dark ::-webkit-scrollbar-thumb {
+      background: #4b5563;
+    }
+    
+    /* 平滑滚动 */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* 卡片悬停效果 */
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .dark .card-hover:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 内容淡入动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <!-- 导航栏 -->
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="flex items-center">
+            <i class="fa-brands fa-amazon text-primary-600 dark:text-primary-400 text-2xl mr-2"></i>
+            <span class="font-semibold text-lg">亚马逊卖家指南</span>
+          </a>
+        </div>
+        
+        <div class="flex items-center">
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200">
+            <i class="fa-solid fa-sun hidden dark:inline-block text-yellow-400"></i>
+            <i class="fa-solid fa-moon inline-block dark:hidden text-gray-700"></i>
+          </button>
+          
+          <div class="hidden md:flex items-center ml-6 space-x-4">
+            <a href="#definition" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">定义与特征</a>
+            <a href="#core-logic" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">核心运营逻辑</a>
+            <a href="#practical-guide" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">实操指南</a>
+            <a href="#hybrid" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">混合型产品</a>
+            <a href="#summary" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">总结</a>
+          </div>
+        </div>
+        
+        <div class="flex items-center md:hidden">
+          <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-gray-200 dark:border-gray-700">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="#definition" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">定义与特征</a>
+        <a href="#core-logic" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">核心运营逻辑</a>
+        <a href="#practical-guide" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">实操指南</a>
+        <a href="#hybrid" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">混合型产品</a>
+        <a href="#summary" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">总结</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- 主要内容 -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <!-- 头部 -->
+    <div class="text-center mb-12 fade-in">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">亚马逊第三方卖家运营指南</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">标品与非标品的策略差异与实操要点</p>
+      <div class="mt-8 flex justify-center space-x-4">
+        <a href="#definition" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors duration-200">
+          开始阅读 <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+        <a href="#summary" class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+          直达总结
+        </a>
+      </div>
+    </div>
+    
+    <!-- 内容概览卡片 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 card-hover fade-in delay-1">
+        <div class="flex items-center justify-center w-12 h-12 rounded-md bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+          <i class="fa-solid fa-tag text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">标品与非标品定义</h3>
+        <p class="text-gray-600 dark:text-gray-400">了解标准化与非标准化产品的本质区别，为选品策略奠定基础</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 card-hover fade-in delay-2">
+        <div class="flex items-center justify-center w-12 h-12 rounded-md bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+          <i class="fa-solid fa-chart-line text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">核心运营逻辑</h3>
+        <p class="text-gray-600 dark:text-gray-400">掌握标品与非标品的不同运营公式，精准制定差异化策略</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 card-hover fade-in delay-3">
+        <div class="flex items-center justify-center w-12 h-12 rounded-md bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+          <i class="fa-solid fa-gears text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">实操指南</h3>
+        <p class="text-gray-600 dark:text-gray-400">实战级别的操作要点与避坑指南，助你快速落地执行</p>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 card-hover fade-in delay-4">
+        <div class="flex items-center justify-center w-12 h-12 rounded-md bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+          <i class="fa-solid fa-lightbulb text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">策略总结</h3>
+        <p class="text-gray-600 dark:text-gray-400">从理解到落地的三步走方法论，构建完整的亚马逊运营体系</p>
+      </div>
+    </div>
+    
+    <!-- 第一部分：定义与特征 -->
+    <section id="definition" class="mb-16 scroll-mt-20 fade-in">
+      <div class="border-l-4 border-primary-500 pl-4 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold">一、标品与非标品的定义及特征</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 标品 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 mr-3">
+              <i class="fa-solid fa-barcode"></i>
+            </div>
+            <h3 class="text-xl font-semibold">标品（标准化产品）</h3>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-gray-700 dark:text-gray-300 mb-3">
+              <strong>定义：</strong>具有统一规格、明确参数、品牌化程度高的商品，消费者购买时以功能和价格为核心决策因素，产品差异小。
+            </p>
+          </div>
+          
+          <h4 class="text-lg font-medium mb-3">特征：</h4>
+          <ul class="space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>参数透明</strong>（如手机型号、电池容量）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>品牌主导</strong>（如苹果、Anker）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>价格竞争激烈</strong>，用户比价行为明显</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>SKU简单</strong>（颜色、尺寸等少量变体）</span>
+            </li>
+          </ul>
+          
+          <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+            <h4 class="font-medium mb-2">典型品类：</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">手机</span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">充电器</span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">家电</span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">书籍</span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">电子配件</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 非标品 -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 mr-3">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <h3 class="text-xl font-semibold">非标品（非标准化产品）</h3>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-gray-700 dark:text-gray-300 mb-3">
+              <strong>定义：</strong>依赖主观感受、设计、场景化体验的商品，消费者决策更关注差异化、情感价值和视觉呈现。
+            </p>
+          </div>
+          
+          <h4 class="text-lg font-medium mb-3">特征：</h4>
+          <ul class="space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>信息不对称</strong>（需通过图片、视频传递价值）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>溢价空间大</strong>（如手工定制产品）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>SKU复杂</strong>（款式、季节性强）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span><strong>用户决策链路长</strong>（依赖内容种草、用户评价）</span>
+            </li>
+          </ul>
+          
+          <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+            <h4 class="font-medium mb-2">典型品类：</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">服装</span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">手工艺品</span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">家居装饰</span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">生鲜食品</span>
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">定制礼品</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 第二部分：核心运营逻辑 -->
+    <section id="core-logic" class="mb-16 scroll-mt-20 fade-in">
+      <div class="border-l-4 border-primary-500 pl-4 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold">二、亚马逊第三方卖家运营的核心逻辑</h2>
+      </div>
+      
+      <!-- 标品运营 -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 mr-2">
+            <span class="text-sm font-bold">1</span>
+          </div>
+          标品运营：效率为王，抢占头部流量
+        </h3>
+        
+        <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-md mb-6">
+          <h4 class="font-medium mb-2">核心公式：</h4>
+          <p class="text-lg font-medium text-blue-800 dark:text-blue-300">销售额 = 搜索排名 × 转化率（价格/评价） × 复购率</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- 选品 -->
+          <div>
+            <h4 class="text-lg font-medium mb-3 flex items-center">
+              <i class="fa-solid fa-magnifying-glass text-blue-600 dark:text-blue-400 mr-2"></i>
+              选品
+            </h4>
+            <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>紧盯Best Seller榜单，选择搜索量大、竞争度适中的标品（如手机壳、数据线）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>规避侵权风险，优先选择有品牌授权或白标产品</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Listing优化 -->
+          <div>
+            <h4 class="text-lg font-medium mb-3 flex items-center">
+              <i class="fa-solid fa-list-check text-blue-600 dark:text-blue-400 mr-2"></i>
+              Listing优化
+            </h4>
+            <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>标题：</strong>精准覆盖关键词（如"iPhone 15 Pro Max Case 6.7 Inch Shockproof"）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>Bullet Points：</strong>突出参数优势（如"100W快充""IP68防水"）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>A+ Content：</strong>用对比表格、场景图强化品牌信任（如Anker充电器的技术参数对比）</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- 广告投放 -->
+          <div>
+            <h4 class="text-lg font-medium mb-3 flex items-center">
+              <i class="fa-solid fa-bullhorn text-blue-600 dark:text-blue-400 mr-2"></i>
+              广告投放
+            </h4>
+            <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>手动精准广告：</strong>主攻核心大词（如"wireless earbuds"），抢占Top of Search位置</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>竞品定位广告：</strong>针对竞品ASIN拦截流量（如对Samsung耳机ASIN投放广告）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>防御性广告：</strong>通过品牌广告保护商标词，防止流量被截取</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- 库存与供应链 -->
+          <div>
+            <h4 class="text-lg font-medium mb-3 flex items-center">
+              <i class="fa-solid fa-boxes-stacked text-blue-600 dark:text-blue-400 mr-2"></i>
+              库存与供应链
+            </h4>
+            <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>FBA优先：</strong>保证物流时效，争夺Buy Box</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>安全库存计算：</strong>根据BSR排名和日均销量备货（如30天滚动库存）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span><strong>防跟卖：</strong>注册Brand Registry，启用Transparency防伪码</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- 实操案例 -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
+          <h4 class="font-medium mb-3">实操案例：手机钢化膜</h4>
+          <ul class="space-y-2 pl-6 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>选品策略：</strong>选择iPhone新机型钢化膜，搜索量大，竞争适中</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>差异化点：</strong>强调"防蓝光+防指纹+超薄0.2mm"等参数优势</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>广告策略：</strong>针对"iPhone 15 screen protector"等大词投放，同时对竞品ASIN进行定向投放</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>库存管理：</strong>新机发布前2个月备足货，确保首发期抢占市场</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 非标品运营 -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+      <h3 class="text-xl font-semibold mb-4 flex items-center">
+        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 mr-2">
+          <span class="text-sm font-bold">2</span>
+        </div>
+        非标品运营：内容为王，打造差异化体验
+      </h3>
+      
+      <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-md mb-6">
+        <h4 class="font-medium mb-2">核心公式：</h4>
+        <p class="text-lg font-medium text-purple-800 dark:text-purple-300">销售额 = 内容质量 × 产品差异化 × 用户评价 × 品牌溢价</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- 选品 -->
+        <div>
+          <h4 class="text-lg font-medium mb-3 flex items-center">
+            <i class="fa-solid fa-magnifying-glass text-purple-600 dark:text-purple-400 mr-2"></i>
+            选品
+          </h4>
+          <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>关注趋势和季节性，选择设计感强、差异化明显的产品（如特色家居装饰）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>分析评论挖掘痛点，寻找改进空间（如更舒适的材质、更实用的设计）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>考虑产品组合策略，增加客单价（如服装搭配、家居风格系列）</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Listing优化 -->
+        <div>
+          <h4 class="text-lg font-medium mb-3 flex items-center">
+            <i class="fa-solid fa-list-check text-purple-600 dark:text-purple-400 mr-2"></i>
+            Listing优化
+          </h4>
+          <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>高质量图片：</strong>多角度、场景化、细节特写（如服装的面料质感）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>视频内容：</strong>展示产品使用场景和效果（如家居装饰前后对比）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>情感化描述：</strong>强调产品带来的体验和情感价值（如"打造温馨舒适的家"）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>A+ Content：</strong>讲述品牌故事、设计理念、使用场景</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- 广告投放 -->
+        <div>
+          <h4 class="text-lg font-medium mb-3 flex items-center">
+            <i class="fa-solid fa-bullhorn text-purple-600 dark:text-purple-400 mr-2"></i>
+            广告投放
+          </h4>
+          <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>长尾关键词策略：</strong>覆盖更多场景和需求描述（如"北欧风格简约床头灯"）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>生活方式定位：</strong>根据用户兴趣和场景投放（如针对"家居装饰爱好者"）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>Sponsored Brand Video：</strong>展示产品使用效果和设计亮点</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 评价与品牌建设 -->
+        <div>
+          <h4 class="text-lg font-medium mb-3 flex items-center">
+            <i class="fa-solid fa-star text-purple-600 dark:text-purple-400 mr-2"></i>
+            评价与品牌建设
+          </h4>
+          <ul class="space-y-2 pl-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>包装体验：</strong>精美包装、赠品、感谢卡提升用户体验</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>追评管理：</strong>主动跟进用户体验，解决问题并鼓励好评</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>社交媒体：</strong>建立品牌Instagram/Pinterest账号，展示产品场景</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span><strong>Amazon Posts：</strong>利用亚马逊社交功能展示产品生活方式</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 实操案例 -->
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
+        <h4 class="font-medium mb-3">实操案例：北欧风格家居装饰</h4>
+        <ul class="space-y-2 pl-6 text-gray-700 dark:text-gray-300">
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>产品策略：</strong>开发统一风格的家居系列（花瓶、装饰画、抱枕等）</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>内容策略：</strong>高质量场景图片，展示不同家居空间的搭配效果</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>广告策略：</strong>投放"scandinavian home decor"等长尾关键词，使用Sponsored Brand展示系列产品</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+            <span><strong>品牌建设：</strong>统一包装设计，附带搭配指南小册子，提升品牌记忆</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 第三部分：实操指南 -->
+    <section id="practical-guide" class="mb-16 scroll-mt-20 fade-in">
+      <div class="border-l-4 border-primary-500 pl-4 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold">三、亚马逊第三方卖家实操指南</h2>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 mb-8">
+        <h3 class="text-xl font-semibold mb-6">标品与非标品的差异化运营策略</h3>
+        
+        <!-- 对比表格 -->
+        <div class="overflow-x-auto mb-8">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead>
+              <tr>
+                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">运营环节</th>
+                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">标品策略</th>
+                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">非标品策略</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              <!-- 选品 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">选品</td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>关注搜索量与BSR排名</li>
+                    <li>分析价格带与利润空间</li>
+                    <li>评估竞争度与市场饱和度</li>
+                  </ul>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>关注设计与差异化</li>
+                    <li>分析趋势与季节性</li>
+                    <li>评估品牌故事与溢价空间</li>
+                  </ul>
+                </td>
+              </tr>
+              
+              <!-- 定价 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">定价</td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>竞争导向定价</li>
+                    <li>价格监控工具必备</li>
+                    <li>促销与优惠券策略</li>
+                  </ul>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>价值导向定价</li>
+                    <li>品牌溢价策略</li>
+                    <li>产品组合与捆绑销售</li>
+                  </ul>
+                </td>
+              </tr>
+              
+              <!-- 图片 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">图片策略</td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>突出产品参数与功能</li>
+                    <li>清晰展示产品细节</li>
+                    <li>对比图与参数图</li>
+                  </ul>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>场景化与情境展示</li>
+                    <li>生活方式与情感共鸣</li>
+                    <li>多角度与细节特写</li>
+                  </ul>
+                </td>
+              </tr>
+              
+              <!-- 广告 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">广告策略</td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>精准大词投放</li>
+                    <li>竞品ASIN定向</li>
+                    <li>高转化率优先</li>
+                  </ul>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>长尾关键词覆盖</li>
+                    <li>生活方式定向</li>
+                    <li>品牌认知优先</li>
+                  </ul>
+                </td>
+              </tr>
+              
+              <!-- 评价管理 -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">评价管理</td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>数量与评分导向</li>
+                    <li>快速响应问题</li>
+                    <li>Vine与Early Reviewer</li>
+                  </ul>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>内容质量与图片导向</li>
+                    <li>追评与用户互动</li>
+                    <li>包装体验与惊喜感</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- 实操步骤 -->
+        <h4 class="text-lg font-medium mb-4">标品与非标品运营的实操步骤</h4>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+          <!-- 标品运营步骤 -->
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg">
+            <h5 class="font-medium text-blue-800 dark:text-blue-300 mb-4">标品运营步骤</h5>
+            <ol class="space-y-3 pl-6 list-decimal text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>市场分析</strong>
+                <p class="mt-1 text-sm">使用Helium 10、Jungle Scout等工具分析搜索量、BSR、竞争度</p>
+              </li>
+              <li>
+                <strong>竞品分析</strong>
+                <p class="mt-1 text-sm">分析Top 10卖家的价格、评价、listing质量，寻找差距</p>
+              </li>
+              <li>
+                <strong>关键词优化</strong>
+                <p class="mt-1 text-sm">覆盖核心搜索词，优化标题、五点描述、后台关键词</p>
+              </li>
+              <li>
+                <strong>价格策略</strong>
+                <p class="mt-1 text-sm">设置有竞争力的价格，使用自动重定价工具跟踪竞争对手</p>
+              </li>
+              <li>
+                <strong>广告投放</strong>
+                <p class="mt-1 text-sm">精准大词投放，ACOS控制在15-25%，持续优化</p>
+              </li>
+              <li>
+                <strong>库存管理</strong>
+                <p class="mt-1 text-sm">根据销售周期和季节性，保持30-45天安全库存</p>
+              </li>
+              <li>
+                <strong>评价管理</strong>
+                <p class="mt-1 text-sm">使用Request a Review功能，快速处理负面评价</p>
+              </li>
+            </ol>
+          </div>
+          
+          <!-- 非标品运营步骤 -->
+          <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg">
+            <h5 class="font-medium text-purple-800 dark:text-purple-300 mb-4">非标品运营步骤</h5>
+            <ol class="space-y-3 pl-6 list-decimal text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>差异化定位</strong>
+                <p class="mt-1 text-sm">明确产品独特卖点，确定目标用户群体和使用场景</p>
+              </li>
+              <li>
+                <strong>内容创作</strong>
+                <p class="mt-1 text-sm">拍摄高质量产品图片，制作视频，突出设计细节和使用场景</p>
+              </li>
+              <li>
+                <strong>故事化描述</strong>
+                <p class="mt-1 text-sm">围绕产品设计理念、材质特点、使用体验撰写描述文案</p>
+              </li>
+              <li>
+                <strong>A+ Content设计</strong>
+                <p class="mt-1 text-sm">展示品牌故事、设计灵感、产品系列和搭配建议</p>
+              </li>
+              <li>
+                <strong>长尾关键词覆盖</strong>
+                <p class="mt-1 text-sm">挖掘场景词、风格词、情感词，扩大流量来源</p>
+              </li>
+              <li>
+                <strong>品牌体验</strong>
+                <p class="mt-1 text-sm">设计精美包装，添加使用指南、感谢卡、小惊喜</p>
+              </li>
+              <li>
+                <strong>社交媒体联动</strong>
+                <p class="mt-1 text-sm">建立品牌社交账号，展示产品场景，引导流量到亚马逊</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+        
+        <!-- 避坑指南 -->
+        <h4 class="text-lg font-medium mb-4">亚马逊运营避坑指南</h4>
+        
+        <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg mb-6">
+          <h5 class="font-medium text-red-800 dark:text-red-300 mb-4">常见运营误区</h5>
+          <ul class="space-y-3 pl-6 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2"></i>
+              <div>
+                <strong>过度依赖单一产品</strong>
+                <p class="mt-1 text-sm">风险：账号健康度低，受平台政策和市场波动影响大</p>
+                <p class="mt-1 text-sm">建议：建立产品矩阵，分散风险</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2"></i>
+              <div>
+                <strong>忽视品牌建设</strong>
+                <p class="mt-1 text-sm">风险：低客户忠诚度，易被竞争对手替代</p>
+                <p class="mt-1 text-sm">建议：注册Brand Registry，打造品牌资产</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2"></i>
+              <div>
+                <strong>违反亚马逊政策</strong>
+                <p class="mt-1 text-sm">风险：账号被封，产品被下架</p>
+                <p class="mt-1 text-sm">建议：严格遵守TOS，不使用黑帽手段</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1 mr-2"></i>
+              <div>
+                <strong>库存管理不当</strong>
+                <p class="mt-1 text-sm">风险：断货影响排名，积压增加成本</p>
+                <p class="mt-1 text-sm">建议：建立库存预警机制，合理规划备货</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 第四部分：混合型产品 -->
+    <section id="hybrid" class="mb-16 scroll-mt-20 fade-in">
+      <div class="border-l-4 border-primary-500 pl-4 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold">四、混合型产品的运营策略</h2>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+        <p class="mb-6 text-gray-700 dark:text-gray-300">
+          很多产品同时具备标品和非标品的特性，需要结合两种思路进行运营。例如高端厨具、智能家居产品等，既有明确的参数标准，又有设计和体验层面的差异化。
+        </p>
+        
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 p-5 rounded-lg mb-6">
+          <h4 class="font-medium mb-4">混合型产品的特点</h4>
+          <ul class="space-y-2 pl-6 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span>既有明确的功能参数，又有设计和体验差异</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span>消费者决策过程中同时考虑理性和感性因素</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span>品牌与参数同等重要</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+              <span>典型例子：高端厨具、智能家居、高端音响、设计家具</span>
+            </li>
+          </ul>
+        </div>
+        
+        <h4 class="text-lg font-medium mb-4">混合型产品运营策略</h4>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- 内容策略 -->
+          <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-3">
+              <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 mr-3">
+                <i class="fa-solid fa-pen-to-square text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <h5 class="font-medium">内容策略</h5>
+            </div>
+            <ul class="space-y-2 pl-4 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>第一部分突出参数与性能（标品思维）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>第二部分强调设计与体验（非标品思维）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>图片同时包含参数展示和场景展示</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>视频重点展示产品使用体验</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 关键词策略 -->
+        <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 mr-3">
+              <i class="fa-solid fa-key text-indigo-600 dark:text-indigo-400"></i>
+            </div>
+            <h5 class="font-medium">关键词策略</h5>
+          </div>
+          <ul class="space-y-2 pl-4 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>标题覆盖核心参数词（如"65W快充"）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>描述中覆盖体验和场景词（如"办公室必备"）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>后台关键词覆盖长尾和情感词</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>广告组合使用精准词和场景词</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 品牌策略 -->
+        <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 mr-3">
+              <i class="fa-solid fa-copyright text-indigo-600 dark:text-indigo-400"></i>
+            </div>
+            <h5 class="font-medium">品牌策略</h5>
+          </div>
+          <ul class="space-y-2 pl-4 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>强调技术实力与设计理念并重</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>A+ Content展示技术参数与品牌故事</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>包装同时体现专业感和设计感</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+              <span>建立专业+时尚的品牌形象</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 案例分析 -->
+      <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg mb-6">
+        <h4 class="font-medium mb-4">案例分析：智能台灯</h4>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h5 class="text-sm font-medium mb-2">标品属性运营要点：</h5>
+            <ul class="space-y-2 pl-6 text-sm text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>突出亮度、色温范围、功率等参数</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>详细说明智能控制功能（App、语音助手兼容性）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>与竞品进行参数对比表格</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>投放"智能台灯""护眼台灯"等功能词</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h5 class="text-sm font-medium mb-2">非标品属性运营要点：</h5>
+            <ul class="space-y-2 pl-6 text-sm text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>强调极简设计风格，材质质感</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>展示在不同家居风格中的搭配效果</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>描述使用场景（阅读、工作、休闲）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-angle-right text-gray-500 mt-1 mr-2"></i>
+                <span>投放"北欧风台灯""书桌装饰"等场景词</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 第五部分：总结 -->
+  <section id="summary" class="mb-16 scroll-mt-20 fade-in">
+    <div class="border-l-4 border-primary-500 pl-4 mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold">五、亚马逊第三方卖家运营总结</h2>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+      <!-- 三步走方法论 -->
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-6">亚马逊卖家三步走方法论</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 第一步 -->
+          <div class="bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-900/20 p-5 rounded-lg">
+            <div class="flex items-center mb-4">
+              <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 mr-3">
+                <span class="font-bold">1</span>
+              </div>
+              <h4 class="font-medium">明确产品属性</h4>
+            </div>
+            <ul class="space-y-3 pl-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 mt-1 mr-2"></i>
+                <span>判断产品是标品、非标品还是混合型</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 mt-1 mr-2"></i>
+                <span>分析目标用户的购买决策因素</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 mt-1 mr-2"></i>
+                <span>评估竞争环境与差异化空间</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- 第二步 -->
+          <div class="bg-gradient-to-b from-indigo-50 to-indigo-100 dark:from-indigo-900/40 dark:to-indigo-900/20 p-5 rounded-lg">
+            <div class="flex items-center mb-4">
+              <div class="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-200 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200 mr-3">
+                <span class="font-bold">2</span>
+              </div>
+              <h4 class="font-medium">制定差异化策略</h4>
+            </div>
+            <ul class="space-y-3 pl-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 mt-1 mr-2"></i>
+                <span>标品：突出参数优势与价格竞争力</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 mt-1 mr-2"></i>
+                <span>非标品：强化设计与情感价值</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 mt-1 mr-2"></i>
+                <span>混合型：两种策略结合使用</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- 第三步 -->
+          <div class="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-900/20 p-5 rounded-lg">
+            <div class="flex items-center mb-4">
+              <div class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-200 dark:bg-purple-800 text-purple-800 dark:text-purple-200 mr-3">
+                <span class="font-bold">3</span>
+              </div>
+              <h4 class="font-medium">执行与优化</h4>
+            </div>
+            <ul class="space-y-3 pl-4 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 mt-1 mr-2"></i>
+                <span>建立数据监控体系（销量、转化率、ACOS）</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 mt-1 mr-2"></i>
+                <span>A/B测试不同策略效果</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 mt-1 mr-2"></i>
+                <span>持续优化产品矩阵与品牌建设</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 最终建议 -->
+      <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold mb-4">亚马逊第三方卖家成功要点</h3>
+        
+        <ul class="space-y-4 text-gray-700 dark:text-gray-300">
+          <li class="flex items-start">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 mt-1 mr-3">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div>
+              <strong>理解产品本质</strong>
+              <p class="mt-1">清晰认识产品属性，是标品还是非标品，决定了整个运营策略的方向。不要用标品思维运营非标品，反之亦然。</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 mt-1 mr-3">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+              <strong>以用户为中心</strong>
+              <p class="mt-1">深入理解目标用户的购买决策过程，标品用户关注参数与价格，非标品用户关注设计与体验，据此优化产品展示。</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 mt-1 mr-3">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+              <strong>数据驱动决策</strong>
+              <p class="mt-1">建立完善的数据监控体系，定期分析转化率、点击率、广告效果等指标，根据数据不断优化运营策略。</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 mt-1 mr-3">
+              <i class="fa-solid fa-trademark"></i>
+            </div>
+            <div>
+              <strong>品牌建设是长期投资</strong>
+              <p class="mt-1">无论是标品还是非标品，品牌建设都是提升溢价能力和用户忠诚度的关键。注册Brand Registry，利用A+ Content、Stores等工具打造品牌形象。</p>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 mt-1 mr-3">
+              <i class="fa-solid fa-arrows-to-circle"></i>
+            </div>
+            <div>
+              <strong>多渠道协同</strong>
+              <p class="mt-1">将亚马逊作为核心渠道，同时布局社交媒体、独立站等多渠道矩阵，降低平台依赖风险，提升品牌影响力。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 页脚 -->
+<footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <p class="text-gray-500 dark:text-gray-400 mb-4">亚马逊第三方卖家运营指南 | 标品与非标品策略</p>
+      <p class="text-sm text-gray-400 dark:text-gray-500">本指南仅供学习参考，实际运营请结合亚马逊最新政策与市场变化</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<button id="back-to-top" class="fixed bottom-6 right-6 p-3 rounded-full bg-primary-600 text-white shadow-lg opacity-0 transition-opacity duration-300 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- JavaScript -->
+<script>
+  // 主题切换
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  
+  // 检查本地存储中的主题偏好
+  if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    html.classList.add('dark');
+  } else {
+    html.classList.remove('dark');
+  }
+  
+  // 主题切换按钮点击事件
+  themeToggle.addEventListener('click', () => {
+    html.classList.toggle('dark');
+    
+    if (html.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  });
+  
+  // 移动端菜单
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  
+  // 点击菜单项后关闭菜单
+  const mobileMenuItems = mobileMenu.querySelectorAll('a');
+  mobileMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+  
+  // 返回顶部按钮
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.style.opacity = '1';
+    } else {
+      backToTopButton.style.opacity = '0';
+    }
+  });
+  
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

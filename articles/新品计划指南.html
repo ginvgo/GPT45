@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新品推广计划 - 完整指南</title>
+    <style>
+        :root {
+            --primary: #4169E1;
+            --secondary: #FF8C00;
+            --accent: #32CD32;
+            --light: #F8F9FA;
+            --dark: #343A40;
+            --success: #28A745;
+            --info: #17A2B8;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --gray: #6C757D;
+            --light-gray: #E9ECEF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #7e57c2);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--secondary);
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            color: var(--dark);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tip {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid var(--primary);
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .badge-info {
+            background-color: var(--info);
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .badge-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .list {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .numbered-list {
+            counter-reset: item;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .numbered-list li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .numbered-list li::before {
+            counter-increment: item;
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .steps {
+            counter-reset: step;
+        }
+        
+        .step {
+            position: relative;
+            padding: 1rem 1rem 1rem 3rem;
+            margin-bottom: 1.5rem;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: -0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        table th,
+        table td {
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+        }
+        
+        table th {
+            background-color: var(--light);
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        .highlight {
+            background-color: rgba(255, 238, 88, 0.5);
+            padding: 0 0.2rem;
+        }
+        
+        .quote {
+            position: relative;
+            padding: 1rem 1rem 1rem 2rem;
+            margin: 1rem 0;
+            background-color: var(--light);
+            border-radius: 4px;
+            font-style: italic;
+        }
+        
+        .quote::before {
+            content: """;
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            font-size: 3rem;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .note {
+            position: relative;
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--info);
+            border-radius: 4px;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
+        
+        .icon-tip {
+            color: var(--info);
+        }
+        
+        .icon-warning {
+            color: var(--warning);
+        }
+        
+        .checklist {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .bg-light {
+            background-color: var(--light);
+        }
+        
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .text-secondary {
+            color: var(--secondary);
+        }
+        
+        .text-success {
+            color: var(--success);
+        }
+        
+        .text-warning {
+            color: var(--warning);
+        }
+        
+        .text-danger {
+            color: var(--danger);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-0 {
+            margin-bottom: 0;
+        }
+        
+        .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        .mt-2 {
+            margin-top: 1rem;
+        }
+        
+        .mt-4 {
+            margin-top: 2rem;
+        }
+        
+        .px-2 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .py-2 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .p-2 {
+            padding: 1rem;
+        }
+        
+        .accordion {
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-header {
+            background-color: var(--light);
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-content {
+            display: none;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .accordion.active .accordion-header {
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .accordion.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion.active .accordion-content {
+            display: block;
+        }
+        
+        .tab-container {
+            margin-bottom: 2rem;
+        }
+        
+        .tab-nav {
+            display: flex;
+            border-bottom: 2px solid var(--light-gray);
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--gray);
+            position: relative;
+            white-space: nowrap;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+        
+        .alert-info {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            color: #0d47a1;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffecb5;
+            color: #856404;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .button:hover {
+            background-color: #3a5ecd;
+        }
+        
+        .button-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .button-secondary:hover {
+            background-color: #e67e00;
+        }
+        
+        .button-success {
+            background-color: var(--success);
+        }
+        
+        .button-success:hover {
+            background-color: #218838;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        .toc {
+            position: sticky;
+            top: 2rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--dark);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            color: var(--primary);
+        }
+        
+        .toc-list .toc-sublist {
+            padding-left: 1rem;
+            list-style-type: none;
+            border-left: 2px solid var(--light-gray);
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .tab-nav {
+                flex-wrap: nowrap;
+            }
+        }
+        
+        .stage-card {
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .pricing-item:last-child {
+            border-bottom: none;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+        }
+        
+        /* 自定义图表样式 */
+        .chart {
+            width: 100%;
+            height: 300px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-bar {
+            display: flex;
+            height: 100%;
+            align-items: flex-end;
+            padding: 30px 0 20px;
+        }
+        
+        .chart-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 5px;
+        }
+        
+        .chart-value {
+            background-color: var(--primary);
+            width: 70%;
+            position: relative;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+        }
+        
+        .chart-label {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .chart-value::before {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--light-gray);
+            margin: 2rem 0;
+        }
+        
+        .dual-content {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .dual-content-col {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .dual-content {
+                flex-direction: column;
+            }
+        }
+        
+        #toc-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 992px) {
+            #toc {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                overflow-y: auto;
+            }
+            
+            #toc.active {
+                display: block;
+            }
+            
+            .toc {
+                margin: 2rem;
+                max-height: calc(100vh - 4rem);
+                overflow-y: auto;
+            }
+            
+            #toc-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1000;
+                background-color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 0.5rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>新品推广计划 - 完整指南</h1>
+            <p>掌握亚马逊新品推广策略，提升产品销量与排名</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <button id="toc-toggle">目录</button>
+        
+        <div class="dual-content">
+            <div class="dual-content-col">
+                <section id="introduction">
+                    <div class="card">
+                        <div class="card-header">课程总结：如何做新品的推广计划</div>
+                        <p>本指南将全面介绍亚马逊新品推广的核心要点和实操策略，帮助卖家从定价、关键词收集、广告投放到推广节奏等多方面掌握成功上架新品的方法。</p>
+                        <p>通过遵循本指南中的策略和技巧，你将能够为自己的新品制定一个全面而有效的推广计划，在竞争激烈的亚马逊平台上获得更好的曝光和销量。</p>
+                    </div>
+                </section>
+                
+                <section id="pricing">
+                    <h2>一、价格定价原则</h2>
+                    
+                    <div class="card">
+                        <h3>定价基本策略</h3>
+                        <div class="tip">
+                            <strong>核心原则：</strong>以细分市场的平均价为基础
+                        </div>
+                        
+                        <div class="grid">
+                            <div class="stage-card">
+                                <h4>低于平均价策略</h4>
+                                <p>适合常规推广</p>
+                                <div class="alert alert-info">
+                                    <strong>价格选择案例：</strong> 如果你的商品价格区间是99.99-109.99，建议选择<span class="highlight">109.99</span>
+                                </div>
+                                <p>原因：属于价格区间100-200的低价，优于价格区间50-100的高价</p>
+                                <p>例外：多变体父体可以定99.99，然后使用多价格维度</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>远低于市场价策略</h4>
+                                <p>低价冲排名，冲销量</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>高价+折扣法</h4>
+                                <p>比平均价高，设置会员折扣+优惠券</p>
+                                <p>目的：提升点击和转换</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>高价+站外法</h4>
+                                <p>初期高价，配合站外推广</p>
+                                <p>上来后，降低价格</p>
+                                <p>适合站外的推广方式</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>定价延伸策略</h3>
+                        
+                        <div class="accordion">
+                            <div class="accordion-header">变体定价策略</div>
+                            <div class="accordion-content">
+                                <ul class="list">
+                                    <li>查看前台页面价格区间</li>
+                                    <li><strong>变体原则：</strong>至少跨度2个维度（价格维度）</li>
+                                    <li>同一区间内，需要测试相差多少会影响转化率</li>
+                                    <li>例如：100-130之间，找出调整不影响转化率的范围</li>
+                                    <li>关注重点：曝光量和转化率</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion">
+                            <div class="accordion-header">多账号定价策略</div>
+                            <div class="accordion-content">
+                                <p>使用矩阵法进行多账号定价</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="conversion">
+                    <h2>二、转化率</h2>
+                    
+                    <div class="card">
+                        <h3>转化率查询方法</h3>
+                        <ul class="list">
+                            <li>查询行业平均水平</li>
+                            <li>参考ABA前三名的转化率</li>
+                            <li>考虑品牌指标和类目基数</li>
+                        </ul>
+                        
+                        <div class="note">
+                            <strong>订单量目标设定：</strong>
+                            <ul class="list">
+                                <li>基于你自己想完成的目标</li>
+                                <li>第一周：参考新品榜单第一名</li>
+                                <li>第二周：应比第一周有所提升</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="keywords">
+                    <h2>三、关键词收集</h2>
+                    
+                    <div class="card">
+                        <h3>收集方式</h3>
+                        <div class="grid">
+                            <div class="stage-card">
+                                <h4>H10工具</h4>
+                                <p>利用H10进行关键词挖掘</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>Magnet工具</h4>
+                                <p>使用Magnet收集相关关键词</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>ABA工具</h4>
+                                <p>通过ABA分析竞品关键词</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>卖家精灵/数魔</h4>
+                                <p>利用这些工具进行更全面的关键词挖掘</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip">
+                            <strong>核心步骤：</strong>词收集好后进行分析（见附件）
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="keyword-inclusion">
+                    <h2>四、自检收录</h2>
+                    
+                    <div class="card">
+                        <h3>收录检查方法</h3>
+                        <ul class="numbered-list">
+                            <li>H10收录检查</li>
+                            <li>H10链接分析</li>
+                            <li>H10-cerebro盒自动广告相互检测
+                                <ul class="list">
+                                    <li>输入自己的ASIN</li>
+                                    <li>用同样地方式查看关键词</li>
+                                </ul>
+                            </li>
+                            <li>广告后台关键词手动投放检查</li>
+                        </ul>
+                        
+                        <div class="alert alert-info">
+                            <h4>关键词投放结果分析</h4>
+                          <ul class="list">
+                                <li>看出来的词是否与你相关
+                                    <ul>
+                                        <li>如果不相关 → 优化链接</li>
+                                        <li>如果没有推荐 → 链接降权</li>
+                                        <li>如果相关 → SP广告开启没问题</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>类目投放</h3>
+                        <p>只有一个类目时的处理方法：</p>
+                        
+                        <div class="tip">
+                            <h4>收录状态指标</h4>
+                            <ul class="list">
+                                <li>看精准度</li>
+                                <li>竞争是否OK：看商品数，数量越多说明亚马逊越觉得你有竞争力</li>
+                                <li>有没有人新品打互补类目没有曝光：因为亚马逊根本没有给你推荐</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>干扰处理方法</h4>
+                        <ul class="list">
+                            <li><strong>变体策略：</strong>
+                                <ul>
+                                    <li>A变体放某个类目</li>
+                                    <li>B变体放另外类目</li>
+                                    <li>先两个产品单独放在两个类目出单，再绑到一起</li>
+                                </ul>
+                            </li>
+                            <li><strong>广告策略：</strong>投放想放入的类目词</li>
+                            <li><strong>标题策略：</strong>另外一个变体写类目词</li>
+                            <li><strong>站外引流</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>ASIN投放</h3>
+                        <div class="warning">
+                            <p><strong>ASIN太少的问题：</strong>通常是关键词和同类商品收录太少</p>
+                            <p><strong>解决方案：</strong>优化链接，等手动精准带动后再开启</p>
+                        </div>
+                        
+                        <p><strong>ASIN推荐产品匹配问题：</strong>匹配的都是那些低价或者不相关的</p>
+                        <p><strong>解决方案：</strong>先不打，通过SP广告优化后再打</p>
+                    </div>
+                </section>
+                
+                <section id="promotion-rhythm">
+                    <h2>五、推广节奏</h2>
+                    
+                    <div class="card">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-title">第一阶段：14天+8天上首页</div>
+                                <p>初期推广重点阶段</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-title">第二阶段：30天</div>
+                                <p>中期稳定增长阶段</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-title">第三阶段：90天</div>
+                                <p>长期持续优化阶段</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip">
+                            <strong>思考题：万能公式</strong>
+                            <p>记住原则：每一周都比上周好就行了</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="ad-strategy">
+                    <h2>六、广告策略</h2>
+                    
+                    <div class="card">
+                        <h3>新品广告模型</h3>
+                        
+                        <div class="tab-container">
+                            <div class="tab-nav">
+                                <button class="tab-btn active" data-tab="manual-ad">手动广告</button>
+                                <button class="tab-btn" data-tab="auto-ad">自动广告</button>
+                                <button class="tab-btn" data-tab="special-cases">特殊情况</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="manual-ad">
+                                <h4>手动广告策略</h4>
+                                <ul class="numbered-list">
+                                    <li>主推词精准</li>
+                                    <li>主推词广泛/词组</li>
+                                    <li>ASIN广告</li>
+                                </ul>
+                                
+                                <div class="alert alert-info">
+                                    <h4>主推词广泛、词组是否需要精准否定？</h4>
+                                    <p>取决于词大小和目的：</p>
+                                    <ul class="list">
+                                        <li>词很大：必须在广泛和词组那里否定，否则长尾词跑不出来</li>
+                                        <li>词比较小且想精准卡位：建议否定</li>
+                                        <li>不否定情况：词小且2者出价不一样时</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="alert alert-info">
+                                    <h4>ASIN广告</h4>
+                                    <p>考虑精准性和转化性：</p>
+                                    <ul class="list">
+                                        <li>找前400名的ASIN</li>
+                                        <li>找相对较差的竞争对手先打</li>
+                                        <li>开始一周后，有了好评，可以选择第二层级竞争对手</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="success">
+                                    <h4>手动广告效果好的条件</h4>
+                                    <ul class="checklist">
+                                        <li>标题和主打词一致</li>
+                                        <li>周围环境的价格区间人群要一致</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="auto-ad">
+                                <h4>自动广告策略</h4>
+                                <ul class="list">
+                                    <li>展示广告：商品投放（同理手动广告）</li>
+                                    <li><strong>注意事项：</strong>
+                                        <ul>
+                                            <li>研究竞争对手的操作手法</li>
+                                            <li>如果竞争对手手动广告非常厉害，分布强大，找精准小词打</li>
+                                            <li>考虑展示广告和SB广告</li>
+                                            <li>不要太在意关键词排名，有了销售量就有review了</li>
+                                            <li>后期再打SP大词也是可行的</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                                <div class="alert alert-warning">
+                                    <h4>转化率下降，流量曝光都在下降怎么办？</h4>
+                                    <ol class="list">
+                                        <li>重新开启3组广告主推词</li>
+                                        <li>使用不同竞价策略：
+                                            <ul>
+                                                <li>固定竞价</li>
+                                                <li>up和down</li>
+                                                <li>只降低</li>
+                                            </ul>
+                                        </li>
+                                        <li>控制变量-BID</li>
+                                    </ol>
+                                    <p>很快就会发现广告和点击可以花费出去了</p>
+                                    <p><strong>核心：</strong>必须解决转化率问题，否则会重复之前的问题</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="special-cases">
+                                <h4>如何8天关键词上首页</h4>
+                                <p>单个SKU在8天内达到一定销售量即可</p>
+                                <p>小词、小站点可能不需要太多单就能跑到首页</p>
+                                <p><strong>核心：</strong>单个SKU策略</p>
+                                
+                                <div class="grid">
+                                    <div class="stage-card">
+                                        <h4>大词策略</h4>
+                                        <ul class="list">
+                                            <li>固定竞价</li>
+                                            <li>调价方式：从第2页开打比较好，价格慢慢调，关注位置</li>
+                                            <li>价格：行业平均水平，保证转化率高</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="stage-card">
+                                        <h4>小词策略</h4>
+                                        <ul class="list">
+                                            <li>固定竞价/up and down</li>
+                                            <li>调价方式：先高后低</li>
+                                            <li>位置：直接top位置</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>变体广告策略</h3>
+                        
+                        <div class="alert alert-info">
+                            <h4>测试引流款和利润款效果</h4>
+                            <p><strong>核心变量：</strong></p>
+                            <ul class="list">
+                                <li>主打核心关键词一定要一致</li>
+                                <li>一定要放在同一个group里面</li>
+                            </ul>
+                            
+                            <p><strong>检测结果关注点：</strong></p>
+                            <ul class="list">
+                                <li>引流款能否带来其他sku的销量：查看已购买商品报告</li>
+                                <li>引流款的CPC竞价是否有利可图：考虑极限CPC值</li>
+                            </ul>
+                            
+                            <p>如果以上都不能做到，则不能称为引流款，只能成为普通变体</p>
+                        </div>
+                        
+                        <div class="alert alert-success">
+                            <h4>变体广告效果优化</h4>
+                            <ul class="list">
+                                <li>变体的客户群体最好一致
+                                    <ul>
+                                        <li>例如：带靠头的office chair和不带靠头的office chair</li>
+                                    </ul>
+                                </li>
+                                <li>老带新时可节约费用，但后期最好拆开</li>
+                                <li>价格要合理，避免相互竞争</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h4>变体广告拆分</h4>
+                            <ul class="list">
+                                <li>可以做关键词广告矩阵</li>
+                                <li>可以做链接的闭环</li>
+                            </ul>
+                            
+                            <p><strong>投放方式：</strong></p>
+                            <ul class="list">
+                                <li>一个SKU，一个广告</li>
+                                <li>ASIN广告则相互投放</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>ACOS优化策略</h3>
+                        <h4>如何降低ACOS</h4>
+                        <ul class="numbered-list">
+                            <li>提高转化率：让自己处于更有利的位置</li>
+                            <li>降低CPC：选择相对竞争小一点的词来投</li>
+                            <li>提高价格：尝试调整，但不能波动太大</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="special-cases">
+                    <h2>七、特殊情况</h2>
+                    
+                    <div class="card">
+                        <h3>亚马逊标签获取</h3>
+                        
+                        <div class="grid">
+                            <div class="stage-card">
+                                <h4>新品榜第一名</h4>
+                                <p>与销售量相关</p>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>Amazon Choice</h4>
+                                <ul class="list">
+                                    <li>FBA产品</li>
+                                    <li>必须4星以上</li>
+                                    <li>拥有一定性价比</li>
+                                    <li>在echo端有这个词</li>
+                                    <li>在echo端销售排名是最好的</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="stage-card">
+                                <h4>HIGHLY RATED</h4>
+                                <ul class="list">
+                                    <li>SP广告</li>
+                                    <li>必须4星以上</li>
+                                    <li>review数必须100以上</li>
+                                    <li>不同价位段都会出现</li>
+                                    <li>不同受众也会出现</li>
+                                    <li>点击量较高</li>
+                                    <li>销售量良好</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="selection">
+                    <h2>八、选品篇实操</h2>
+                    
+                    <div class="card">
+                        <h3>EXCEL操作</h3>
+                        
+                        <div class="alert alert-info">
+                            <h4>常见问题解答</h4>
+                            <p><strong>Q: 曲线图是否需要手工制作？软件可以做到吗？</strong></p>
+                            <p>A: 如果你是从类型中找最佳样式，最好手工制作。如果看大分类基本一致，但价格区间一定要做。以上可以简化，直接选择目标方向。</p>
+                        </div>
+                        
+                        <h3>产品分析工具</h3>
+                        <ul class="list">
+                            <li><strong>属性分析：</strong>特征性工具</li>
+                            <li><strong>Review分析：</strong>可使用软件，如卖家精灵</li>
+                        </ul>
+                    </div>
+                </section>
+                
+            </div>
+            
+            <div class="dual-content-col" id="toc">
+                <div class="toc">
+                    <h3 class="mb-2">目录</h3>
+                    <ul class="toc-list">
+                        <li><a href="#introduction">课程简介</a></li>
+                        <li>
+                            <a href="#pricing">一、价格定价原则</a>
+                            <ul class="toc-sublist">
+                                <li><a href="#pricing">定价基本策略</a></li>
+                                <li><a href="#pricing">定价延伸策略</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#conversion">二、转化率</a></li>
+                        <li><a href="#keywords">三、关键词收集</a></li>
+                        <li>
+                            <a href="#keyword-inclusion">四、自检收录</a>
+                            <ul class="toc-sublist">
+                                <li><a href="#keyword-inclusion">收录检查方法</a></li>
+                                <li><a href="#keyword-inclusion">类目投放</a></li>
+                                <li><a href="#keyword-inclusion">ASIN投放</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#promotion-rhythm">五、推广节奏</a></li>
+                        <li>
+                            <a href="#ad-strategy">六、广告策略</a>
+                            <ul class="toc-sublist">
+                                <li><a href="#ad-strategy">新品广告模型</a></li>
+                                <li><a href="#ad-strategy">变体广告策略</a></li>
+                                <li><a href="#ad-strategy">ACOS优化策略</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#special-cases">七、特殊情况</a></li>
+                        <li><a href="#selection">八、选品篇实操</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>新品推广计划指南【by Ginv】 2025</p>
+        </div>
+    </footer>
+    
+    <div class="scroll-top" id="scroll-top">↑</div>
+    
+    <script>
+        // 手风琴功能
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+        
+        // 标签页功能
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.getAttribute('data-tab');
+                
+                // 移除所有活动状态
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 添加活动状态到当前标签
+                button.classList.add('active');
+                document.getElementById(tab).classList.add('active');
+            });
+        });
+        
+        // 滚动到顶部按钮
+        const scrollTopButton = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopButton.classList.add('visible');
+            } else {
+                scrollTopButton.classList.remove('visible');
+            }
+        });
+        
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 移动设备目录切换
+        const tocToggle = document.getElementById('toc-toggle');
+        const toc = document.getElementById('toc');
+        
+        tocToggle.addEventListener('click', () => {
+            toc.classList.toggle('active');
+        });
+        
+        // 点击目录外部关闭目录
+        toc.addEventListener('click', (e) => {
+            if (e.target === toc) {
+                toc.classList.remove('active');
+            }
+        });
+        
+        // 页面加载时自动打开第一个手风琴
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstAccordion = document.querySelector('.accordion');
+            if (firstAccordion) {
+                firstAccordion.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
