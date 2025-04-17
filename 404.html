@@ -26,9 +26,9 @@
     </style>
 </head>
 <body>
-    <h1>Oppps~ 页面飞走了</h1>
+    <h1>Oops!~ 页面飞走了</h1>
   
-    <a href="/" class="button">返回首页</a>
+    <a href="/" class="button">返回首页（5秒后跳转回首页）</a>
 </body>
 </html>
 
@@ -37,4 +37,20 @@
     window.location.href = "/";
   }, 5000); // 5秒后跳转回首页
 </script>
+
+ <script>
+    // 获取当前路径
+    const path = window.location.pathname;
+
+    // 处理路径，如 "/about/" -> "about", "/contact" -> "contact"
+    let page = path.replace(/^\/+|\/+$/g, ""); // 去掉首尾斜杠
+
+    // 若为空，则跳转主页
+    if (!page) {
+      window.location.href = "/index.html";
+    } else {
+      // 跳转到相应的 .html 文件
+      window.location.href = `/${page}.html`;
+    }
+  </script>
 
