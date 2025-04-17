@@ -6,12 +6,26 @@
         /* 自定义样式 */
         body { text-align: center; padding: 50px; }
         h1 { color: #5E6AD2; }
+        .button {
+            background-color: #5E6AD2;
+            color: white;
+            text-decoration: none; /* 去掉下划线 */
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #4b5ab1;
+        }
     </style>
 </head>
 <body>
     <h1>Oppps~ 页面飞走了</h1>
   
-    <a href="/">返回首页</a>
+    <a href="/" class="button">返回首页</a>
 </body>
 </html>
 
