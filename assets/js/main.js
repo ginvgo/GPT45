@@ -71,6 +71,7 @@ function initSearchFunctionality() {
     if (event.key === "Enter") {
       removeSearchResults();
 
+      // 创建结果容器
       const resultsContainer = document.createElement("div");
       resultsContainer.id = "search-results";
       resultsContainer.className = "search-results-container";
@@ -78,24 +79,49 @@ function initSearchFunctionality() {
       const wrapper = document.createElement("div");
       wrapper.className = "results-cards";
 
-      const results = await getSearchResults(query);
-
-      if (results.length === 0) {
-        wrapper.innerHTML = `<div class="result-card"><div class="card-type">没有找到匹配内容</div><div class="card-title">请尝试使用其他关键词</div></div>`;
-      } else {
-        results.forEach(r => {
-          const card = document.createElement("div");
-          card.className = "result-card";
-          card.innerHTML = `
-            <div class="card-type">${r.type}</div>
-            <a class="card-title" href="${r.url}" target="_blank">${r.title}</a>
-          `;
-          wrapper.appendChild(card);
-        });
-      }
+      // 先插入加载状态
+      wrapper.innerHTML = `
+        <div class="result-card">
+          <div class="card-loading">正在搜索中...</div>
+        </div>
+      `;
 
       resultsContainer.appendChild(wrapper);
       heroSection.parentNode.insertBefore(resultsContainer, heroSection);
+
+      try {
+        // 获取搜索结果
+        const results = await getSearchResults(query);
+        
+        // 清空加载状态
+        wrapper.innerHTML = "";
+
+        if (results.length === 0) {
+          wrapper.innerHTML = `
+            <div class="result-card">
+              <div class="card-type">没有找到匹配内容</div>
+              <div class="card-title">请尝试使用其他关键词</div>
+            </div>
+          `;
+        } else {
+          results.forEach(r => {
+            const card = document.createElement("div");
+            card.className = "result-card";
+            card.innerHTML = `
+              <div class="card-type">${r.type}</div>
+              <a class="card-title" href="${r.url}" target="_blank">${r.title}</a>
+            `;
+            wrapper.appendChild(card);
+          });
+        }
+      } catch (error) {
+        // 错误处理
+        wrapper.innerHTML = `
+          <div class="result-card">
+            <div class="card-error">搜索暂时不可用，请稍后再试</div>
+          </div>
+        `;
+      }
     }
   });
 
