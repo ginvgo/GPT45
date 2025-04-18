@@ -175,6 +175,8 @@ async function getSearchResults(query) {
 // 获取文件类型（文章、工具、资源等）
 function getPageType(path) {
   if (path.includes("articles/")) return "文章";
+  if (path.includes("yunying/")) return "运营";
+  if (path.includes("ad/")) return "广告";
   if (path.includes("tools/")) return "工具";
   if (path.includes("calculators/")) return "计算器";
   if (path.includes("resources/")) return "资源";
