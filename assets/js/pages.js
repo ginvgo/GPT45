@@ -6,7 +6,7 @@ const htmlPages = [
   "articles/亚马逊标品&非标品运营指南.html",
   "articles/新品推广计划.html",
   "yunying/产品运营全周期策略.html",
-  "yunying/关于亚马逊权威链接.html",
+  "yunying/关于亚马逊权威链接.html"
 
   // 后续新增页面在此手动添加即可
 ];
